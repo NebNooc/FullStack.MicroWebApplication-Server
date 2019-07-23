@@ -24,7 +24,7 @@ export class TransactionService {
   public deposit(toAccountId: number, amount: number, userId: number): Observable<any>{
     let transaction: Transaction = {fromAccountId:9999, toAccountId:toAccountId,
       amount:amount, memo: "this space left blank", userId: userId};
-    console.log("making deposit");
+    console.log("   Making deposit $" + amount);
     return this.http.post("/proxy/api/transaction/deposit", transaction);
   }
 }

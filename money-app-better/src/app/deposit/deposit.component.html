@@ -1,11 +1,4 @@
-<p>
-    I am the deposit component,
-    one potential output of the router.<br>
-    'Inherits' visibility from the router-output component.
-    The below elements are placeholders.
-</p>
-git status
-
+<div>
     <div class="row">
         <div class="col=sm">
             Select Account:
@@ -16,11 +9,9 @@ git status
             </select>
         </div>
     </div>
-<div>
 
     <p>
-<!--        <input style="border-radius: .25em;" name="depositAmount="deposit type="number" placeholder="enter amount" class="form-control form-control-lg">-->
         <input type="text" name="value" placeholder="enter amount" id='amount'/>
-        <input onclick="depositFunds()" type="button" value='Make_Deposit'/>
+        <input (click)="depositFunds()" type="button" value='Make_Deposit'/>
     </p>
 </div>
