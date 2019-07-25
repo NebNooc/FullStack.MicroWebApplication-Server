@@ -27,4 +27,8 @@ export class TransactionService {
     console.log("   Making deposit $" + amount);
     return this.http.post("/proxy/api/transaction/deposit", transaction);
   }
+
+  public withdraw(toAccountId: string, amount: number): Observable<boolean>{
+    return this.http.post<boolean>("/proxy/api/transaction/withdraw/" + toAccountId, amount);
+  }
 }
