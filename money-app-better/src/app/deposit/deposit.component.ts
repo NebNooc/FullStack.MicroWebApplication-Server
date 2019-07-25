@@ -47,14 +47,9 @@ export class DepositComponent implements OnInit {
 
   depositFunds(): void {
 
-    const accountId: number = +((document.getElementById('currentAccountTo') as HTMLInputElement).value);
+    const accountId: number = this.currentAccountTo.id;
     const amount: number = +((document.getElementById('amount') as HTMLInputElement).value);
 
-    console.log('hello world from d.c.ts');
-
-    console.log(accountId);
-    console.log(amount);
-    console.log(Number(this.user.id));
-    this.transactionService.deposit(accountId, amount, +(this.user.id));
+    this.transactionService.deposit(accountId, amount, +(this.user.id)).subscribe(() => this.getAccounts());
 }
 }

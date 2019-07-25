@@ -1,40 +1,35 @@
 package com.beansbeans.moneyapp.ServiceTests;
 
-import com.beansbeans.moneyapp.Services.ValidateUserNamePassword;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
-import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.userValidation.confirmPasswordHash;
-import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.userValidation.makeHash;
-import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.userValidation.isUserNameValid;
-import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.userValidation.isPasswordValid;
-import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.userValidation.isUserNameAvailable;
-
-public class UserNamePasswordTests {
+import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.confirmPasswordHash;
+import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.makeHash;
+import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.isUserNameValid;
+import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.isPasswordValid;
+import static com.beansbeans.moneyapp.Services.ValidateUserNamePassword.isUserNameAvailable;
+import org.junit.runner.RunWith;
 
 
-        public UserNamePasswordTests() {
+public class are_UserName_Password_Valid_Test {
 
-        }
+    @Test
+    public void userNamePasswordTest01() {
+        Boolean ans;
 
-        @Test
-        public void userNamePasswordTest01() {
-            Boolean ans;
+        // Name Good
+        // Pass Good
 
-            // Name Good
-            // Pass Good
+        String name = "ABcd123?";
+        String Pass = "Good123?";
 
-            String name = "ABcd123?";
-            String Pass = "Good123?";
+        ans = isUserNameValid(name);
 
-            ans = isUserNameValid(name);
+        Assert.assertTrue(ans);
 
-            Assert.assertTrue(ans);
+    }
 
-        }
-
-        @Test
+    @Test
         public void userNamePasswordTest02() {
             Boolean ans;
 
@@ -243,25 +238,8 @@ public class UserNamePasswordTests {
 
         }
 
-//        @Test
-//        public void userNamePasswordTest15() {
-//            Boolean ans;
-//
-//            // Name is good
-//            // Pass contains Name
-//
-//            String name = "ABcd123?";
-//            String Pass = "GoodabXABcd123?34";
-//
-//            ans =  isPasswordValid(Pass);
-//
-//            Assert.assertFalse(ans);
-//
-//
-//        }
-
         @Test
-        public void userNamePasswordTest16() {
+        public void userNamePasswordTest15() {
             Boolean ans;
 
             // Name is good
@@ -277,7 +255,7 @@ public class UserNamePasswordTests {
         }
 
         @Test
-        public void userNamePasswordTest17() {
+        public void userNamePasswordTest16() {
             Boolean ans;
 
             // Name is good
@@ -327,7 +305,5 @@ public class UserNamePasswordTests {
 //
 //        Assert.assertTrue(isUserNameAvailable(inputName));
 //    }
-
-
 
 }

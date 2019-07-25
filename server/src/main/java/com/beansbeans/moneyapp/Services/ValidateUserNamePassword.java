@@ -14,15 +14,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-public class ValidateUserNamePassword {
+    public class ValidateUserNamePassword {
+//        String userName;
+//        String userPassword;
 
 
-    public static class userValidation {
-        String userName;
-        String userPassword;
+        public ValidateUserNamePassword() {
 
-
-        public userValidation() {
         }
 
 /*      Methods:
@@ -268,4 +266,3 @@ public class ValidateUserNamePassword {
 
     }
 
-}
