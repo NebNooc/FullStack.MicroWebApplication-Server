@@ -13,6 +13,7 @@ export class AppComponent {
   loggedIn: boolean;
   currentUser: User;
   currentPage: string = 'login'; 
+  isCollapsed = false;
 
   caleb: User = {
     id: '3',

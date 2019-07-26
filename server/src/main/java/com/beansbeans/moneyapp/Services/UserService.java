@@ -26,6 +26,8 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public User show(String userName) { return userRepository.findUserByUserNameIs(userName); }
+
     public User updateUser(Long id, User newUserData){
         User originalUser = userRepository.findById(id).get();
         originalUser.setFirstName(newUserData.getFirstName());

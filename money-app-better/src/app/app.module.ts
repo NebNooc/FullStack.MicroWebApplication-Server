@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { UserServiceService } from '../service/user-service.service';
 import { AccountServiceService } from '../service/account-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     AddAccountComponent,
     DeleteAccountComponent,
     TransactionsComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, 
+    NgbModule
   ],
   providers: [AccountServiceService, UserServiceService],
   bootstrap: [AppComponent]

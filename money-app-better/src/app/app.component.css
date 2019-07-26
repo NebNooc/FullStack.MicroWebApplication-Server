@@ -1,45 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-/* a.nav {
-    font-family: 'Roboto', sans-serif;
-    color: rgb(92, 114, 161);
-    padding: 1%;
-    margin: 1%;
-    border-radius: 5px;
-    background-color: rgb(42, 134, 255);
-    text-decoration: none;
-    
-} */
-.bg-light{
+.display{
+    height: 200px;
+    width: 200px;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* opacity: .8 !important; */
+    background-color: darkgray;
+}
+.navbar-dark{
     background-color: #014fa2 !important;
 }
 .navbar-brand{
+    -webkit-text-fill-color: lightgray;
+    -webkit-text-stroke: .2px;
     font-family: 'Roboto', sans-serif;
     font-size: 40px
+    
 }
 .nav-item{
     margin-left:10px;
+    -webkit-text-fill-color: lightgray;
     }
-
-h1 {
-    font-family: 'Roboto', serif;
-}
-
-p {
-    font-family: 'Roboto', sans-serif;
-}
-
-
-
-/* nav {
-    padding: 2%;
-    background-color: rgb(48, 99, 211);
-    line-height: 220%;
+/* div.display{
+    
 } */
 
+/* body {
+    background:#c33;
+    width: 200px;
+    align-content: center;
+}
 
-/* .router {
-    font-family: 'Roboto', sans-serif;
-    text-align: left;
-    margin-left: 20px
+.panel-transparent {
+    background: none;
+}
+
+.panel-transparent .panel-heading{
+    background: rgba(122, 130, 136, 0.2)!important;
+}
+
+.panel-transparent .panel-body{
+    background: rgba(46, 51, 56, 0.2)!important;
 } */
