@@ -41,8 +41,13 @@ public class UserService {
     public User login(User user) throws SQLException{
         User foundUser = userRepository.findByUserName(user.getUserName());
         if(foundUser == null) throw new SQLException();
-        if(ValidateUserNamePassword.userValidation.confirmPasswordHash(
-                user.getPasswordHash(), foundUser.getPasswordHash())){
+//        if(ValidateUserNamePassword.confirmPasswordHash(
+//                user.getPasswordHash(), foundUser.getPasswordHash())){
+//            return foundUser;
+//        } else {
+//            throw new SQLException();
+//        }
+        if(user.getPasswordHash().equals(foundUser.getPasswordHash())){
             return foundUser;
         } else {
             throw new SQLException();
