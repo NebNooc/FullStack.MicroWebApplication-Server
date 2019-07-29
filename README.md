@@ -13,7 +13,8 @@
 * **Data Layer** - MySQL
 * **Cloud** - AWS
 
-<hr><hr>
+<hr>
+
 ### Money Management Application
 
 #### Features
