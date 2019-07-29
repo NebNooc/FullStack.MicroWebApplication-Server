@@ -11,7 +11,7 @@
 * **Frontend** - Angular / React
 * **Business Logic** - Java (Spring)
 * **Data Layer** - MySQL
-* **Cloud** - AWS
+* **Cloud** - AWS/Heroku
 
 <hr>
 
