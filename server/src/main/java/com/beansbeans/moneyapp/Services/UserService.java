@@ -14,8 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User user){ 
-        return userRepository.save(user);
+    public User create(User rawUser){
+        User savedUser = new User(rawUser, ValidateUserNamePassword.makeHash(rawUser.getPasswordHash()));
+        return userRepository.save(savedUser);
     }
 
     public Iterable<User> findAll() {
