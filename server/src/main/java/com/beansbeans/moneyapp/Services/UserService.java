@@ -14,8 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User user){ 
-        return userRepository.save(user);
+    public User create(User rawUser){
+        User savedUser = new User(rawUser, ValidateUserNamePassword.makeHash(rawUser.getPasswordHash()));
+        return userRepository.save(savedUser);
     }
 
     public Iterable<User> findAll() {
@@ -41,13 +42,8 @@ public class UserService {
     public User login(User user) throws SQLException{
         User foundUser = userRepository.findByUserName(user.getUserName());
         if(foundUser == null) throw new SQLException();
-//        if(ValidateUserNamePassword.confirmPasswordHash(
-//                user.getPasswordHash(), foundUser.getPasswordHash())){
-//            return foundUser;
-//        } else {
-//            throw new SQLException();
-//        }
-        if(user.getPasswordHash().equals(foundUser.getPasswordHash())){
+        if(ValidateUserNamePassword.confirmPasswordHash(
+                user.getPasswordHash(), foundUser.getPasswordHash())){
             return foundUser;
         } else {
             throw new SQLException();
