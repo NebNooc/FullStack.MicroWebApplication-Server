@@ -11,11 +11,13 @@
     background-color: darkgray;
 } */
 
+
 .display{
     align-content: center
 }
 .navbar {
-    min-height: 50%
+    min-height: 50px
+    
   }
 
 #panel {
@@ -61,11 +63,14 @@ button {
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 } */
-body {
+.head{
+    color: #000;
+}
+.body {
 background-image: url("https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241_1280.jpg");
 background-repeat: no-repeat; 
 /* background-position: center;  */
 background-position-x: 50%;
 background-position-y: 20%;
-background-color: dimgray;
+background-color: rgb(238, 239, 240);
 }
