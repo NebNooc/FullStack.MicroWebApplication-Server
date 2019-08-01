@@ -7,9 +7,10 @@ import java.time.LocalDateTime;
 @Table(name="transactions")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
     private Long fromAccountId;
+    @Column(name="to_id")
     private Long toAccountId;
     private Double amount;
     private String memo;

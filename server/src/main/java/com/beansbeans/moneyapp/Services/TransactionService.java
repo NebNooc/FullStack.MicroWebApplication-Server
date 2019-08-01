@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.beansbeans.moneyapp.Repositories.AccountRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -43,6 +44,8 @@ public class TransactionService {
         Double initialBalance = account.getBalance();
         account.setBalance(initialBalance + amount);
         accountRepository.save(account);
+        Transaction transaction = new Transaction(0L,id,amount,"this space for rent", LocalDateTime.now(),account.getUserId());
+        transactionRepository.save(transaction);
         return true;
     }
 

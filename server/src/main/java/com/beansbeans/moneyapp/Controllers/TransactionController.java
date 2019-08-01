@@ -59,7 +59,7 @@ public class TransactionController {
     public ResponseEntity<Boolean> deposit(@RequestBody Transaction transaction){
        try {
            Double amount = transaction.getAmount();
-           Long toAccountId = transaction.getToAccountId();
+           Long toAccountId = transaction.getFromAccountId();
            return new ResponseEntity<>(transactionService.depositTo(toAccountId, amount), HttpStatus.OK);
        } catch (Exception e){
            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -80,10 +80,11 @@ public class TransactionController {
     @PostMapping("/transaction/transfer")
     public ResponseEntity<Boolean> transfer(@RequestBody Transaction transaction){
        try {
-           Long fromAccountId = transaction.getFromAccountId();
+//           Long fromAccountId = transaction.getFromAccountId();
            Long toAccountId = transaction.getToAccountId();
            Double amount = transaction.getAmount();
-           return new ResponseEntity<>(transactionService.transferFunds(fromAccountId, toAccountId, amount), HttpStatus.OK);
+//           return new ResponseEntity<>(transactionService.transferFunds(fromAccountId, toAccountId, amount), HttpStatus.OK);
+           return null;
        } catch (Exception e){
            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
        }
