@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.beansbeans.moneyapp.Repositories.AccountRepository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional
@@ -25,7 +24,6 @@ public class TransactionService {
     }
 
     public Transaction newTransaction(Transaction transaction) {
-
         return transactionRepository.save(transaction);
     }
 
@@ -37,7 +35,8 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public Transaction findTransactionByUserId(Long userId) { return transactionRepository.findById(userId).get(); }
+    public Transaction findTransactionByUserId(Long userId) {
+        return transactionRepository.findById(userId).get(); }
 
     public Boolean depositTo(Long id, Double amount){
         Account account = accountRepository.findById(id).get();
