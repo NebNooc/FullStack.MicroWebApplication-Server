@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
+
 
 @Service
 public class UserService {
@@ -26,6 +25,7 @@ public class UserService {
     public User show(Long id){
         return userRepository.findById(id).get();
     }
+
 
     public User updateUser(Long id, User newUserData){
         User originalUser = userRepository.findById(id).get();
