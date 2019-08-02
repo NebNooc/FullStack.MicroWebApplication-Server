@@ -11,7 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-
+import java.sql.SQLException;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,10 +27,20 @@ public class UserControllerTest {
     public void createUserTest(){
         User user = mockUser();
 
-        when(userService.create(user)).thenReturn(user);
+        try {
+            when(userService.create(user)).thenReturn(user);
+        }
+        catch (SQLException ex) {
+            System.out.println("SQL exception in tcreateUserTest #1");
+        }
         userController.create(user);
 
-        verify(userService,  times(1)).create(user);
+        try {
+            verify(userService, times(1)).create(user);
+        }
+        catch(SQLException ex) {
+            System.out.println("SQL exception in tcreateUserTest #2");
+        }
     }
 
     @Test
