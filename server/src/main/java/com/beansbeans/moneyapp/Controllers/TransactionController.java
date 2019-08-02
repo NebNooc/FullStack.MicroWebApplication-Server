@@ -66,7 +66,7 @@ public class TransactionController {
        }
     }
 
-    @PostMapping("/transaction/withdraw/{fromAccountId}")
+    @PostMapping("/transaction/withdraw")
     public ResponseEntity<Boolean> withdraw(@RequestBody Transaction transaction){
         try {
             Double amount = transaction.getAmount();
