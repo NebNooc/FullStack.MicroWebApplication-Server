@@ -36,10 +36,10 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/transaction/{userId}")
-    public ResponseEntity<Transaction> findByUserId(@PathVariable Long userId){
+    @GetMapping("/transaction/user/{userId}")
+    public ResponseEntity<Iterable<Transaction>> findByUserId(@PathVariable Long userId){
         try {
-            return new ResponseEntity<>(transactionService.findTransactionByUserId(userId), HttpStatus.OK);
+            return new ResponseEntity<>(transactionService.findAllByUserId(userId), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -66,12 +66,12 @@ public class TransactionController {
        }
     }
 
-    @PostMapping("/transaction/withdraw/{fromAccountId}")
+    @PostMapping("/transaction/withdraw")
     public ResponseEntity<Boolean> withdraw(@RequestBody Transaction transaction){
         try {
-            Double amount = transaction.getAmount();
-            Long fromAccountId = transaction.getFromAccountId();
-            return new ResponseEntity<>(transactionService.withdrawFrom(fromAccountId, amount), HttpStatus.OK);
+            //Double amount = transaction.getAmount();
+            //Long fromAccountId = transaction.getFromAccountId();
+            return new ResponseEntity<>(transactionService.withdrawFrom(transaction), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
