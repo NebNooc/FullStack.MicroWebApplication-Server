@@ -1,27 +1,18 @@
 package com.beansbeans.moneyapp.Model;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name="transactions")
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class DepositTransaction {
     private Long transactionId;
-    @Column(name="from_id")
-    private Long fromAccountId;
-    @Column(name="to_id")
     private Long toAccountId;
     private Double amount;
     private String memo;
     private LocalDateTime localDateTime;
     private Long userId;
 
-    public Transaction() { }
+    public DepositTransaction() { }
 
-    public Transaction(Long fromAccountId, Long toAccountId, Double amount, String memo, LocalDateTime localDateTime, Long userId) {
-        this.fromAccountId = fromAccountId;
+    public DepositTransaction( Long toAccountId, Double amount, String memo, LocalDateTime localDateTime, Long userId) {
         this.toAccountId = toAccountId;
         this.amount = amount;
         this.memo = memo;
@@ -29,9 +20,8 @@ public class Transaction {
         this.userId = userId;
     }
 
-    public Transaction(Long transactionId, Long fromAccountId, Long toAccountId, Double amount, String memo, LocalDateTime localDateTime, Long userId) {
+    public DepositTransaction(Long transactionId, Long toAccountId, Double amount, String memo, LocalDateTime localDateTime, Long userId) {
         this.transactionId = transactionId;
-        this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
         this.amount = amount;
         this.memo = memo;
@@ -39,8 +29,7 @@ public class Transaction {
         this.userId = userId;
     }
 
-    public Transaction(Long fromAccountId, Long toAccountId, Double amount, String memo, Long userId){
-        this.fromAccountId = fromAccountId;
+    public DepositTransaction(Long toAccountId, Double amount, String memo, Long userId){
         this.toAccountId = toAccountId;
         this.amount = amount;
         this.memo = memo;
@@ -48,14 +37,9 @@ public class Transaction {
         this.userId = userId;
     }
 
-    public Transaction(Long toAccountId, Double amount) {
+    public DepositTransaction(Long toAccountId, Double amount) {
         this.toAccountId = toAccountId;
         this.amount = amount;
-    }
-
-    public Transaction(Long fromAccountId, String memo) {
-        this.fromAccountId = fromAccountId;
-        this.memo = memo;
     }
 
     public Long getTransactionId() {
@@ -64,14 +48,6 @@ public class Transaction {
 
     public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public Long getFromAccountId() {
-        return fromAccountId;
-    }
-
-    public void setFromAccountId(Long fromAccountId) {
-        this.fromAccountId = fromAccountId;
     }
 
     public Long getToAccountId() {
