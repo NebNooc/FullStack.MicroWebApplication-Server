@@ -1,6 +1,5 @@
 package com.beansbeans.moneyapp.Controllers;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.beansbeans.moneyapp.Model.Account;
 import com.beansbeans.moneyapp.Services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

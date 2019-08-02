@@ -11,9 +11,10 @@
 * **Frontend** - Angular / React
 * **Business Logic** - Java (Spring)
 * **Data Layer** - MySQL
-* **Cloud** - AWS
+* **Cloud** - AWS/Heroku
 
-<hr><hr>
+<hr>
+
 ### Money Management Application
 
 #### Features

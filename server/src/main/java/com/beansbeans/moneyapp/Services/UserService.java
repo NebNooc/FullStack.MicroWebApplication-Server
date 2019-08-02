@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
+
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User user){ 
-        return userRepository.save(user);
+    public User create(User rawUser){
+        User savedUser = new User(rawUser, ValidateUserNamePassword.makeHash(rawUser.getPasswordHash()));
+        return userRepository.save(savedUser);
     }
 
     public Iterable<User> findAll() {
@@ -25,6 +25,7 @@ public class UserService {
     public User show(Long id){
         return userRepository.findById(id).get();
     }
+
 
     public User updateUser(Long id, User newUserData){
         User originalUser = userRepository.findById(id).get();
@@ -41,7 +42,7 @@ public class UserService {
     public User login(User user) throws SQLException{
         User foundUser = userRepository.findByUserName(user.getUserName());
         if(foundUser == null) throw new SQLException();
-        if(ValidateUserNamePassword.userValidation.confirmPasswordHash(
+        if(ValidateUserNamePassword.confirmPasswordHash(
                 user.getPasswordHash(), foundUser.getPasswordHash())){
             return foundUser;
         } else {

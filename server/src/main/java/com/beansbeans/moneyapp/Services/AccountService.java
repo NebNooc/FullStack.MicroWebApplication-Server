@@ -5,8 +5,6 @@ import com.beansbeans.moneyapp.Repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.util.ArrayList;
 
 @Service
 public class AccountService {
@@ -30,6 +28,7 @@ public class AccountService {
     }
 
     public Account create(Account account){
+
         return accountRepository.save(account);
     }
 
