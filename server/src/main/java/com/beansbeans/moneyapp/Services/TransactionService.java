@@ -66,7 +66,7 @@ public class TransactionService {
         return true;
     }
 
-    public Boolean transferFunds(Long fromId, Long toId, Double amount){
+    public Boolean transferFunds(Long fromId, Long toId, Double amount, String memo){
         Account fromAccount = accountRepository.findById(fromId).get();
         Account toAccount = accountRepository.findById(toId).get();
         Double initalBalance = fromAccount.getBalance();
@@ -77,6 +77,8 @@ public class TransactionService {
         toAccount.setBalance(initalBalance + amount);
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
+        Transaction logTransaction = new Transaction(fromId, toId, amount, memo, LocalDateTime.now(), fromAccount.getUserId());
+        transactionRepository.save(logTransaction);
         return true;
     }
 
