@@ -39,11 +39,14 @@ public class TransactionService {
     public Transaction findTransactionByUserId(Long userId) {
         return transactionRepository.findById(userId).get(); }
 
-    public Boolean depositTo(Long id, Double amount){
+    public Boolean depositTo(Long id, Double amount, String memo){
         Account account = accountRepository.findById(id).get();
         Double initialBalance = account.getBalance();
         account.setBalance(initialBalance + amount);
         accountRepository.save(account);
+        Transaction logTransaction = new Transaction(null, account.getId(), amount, memo,
+                LocalDateTime.now(), account.getUserId());
+        transactionRepository.save(logTransaction);
         return true;
     }
 
