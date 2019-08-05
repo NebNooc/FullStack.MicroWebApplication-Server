@@ -36,10 +36,10 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/transaction/{userId}")
-    public ResponseEntity<Transaction> findByUserId(@PathVariable Long userId){
+    @GetMapping("/transaction/user/{userId}")
+    public ResponseEntity<Iterable<Transaction>> findByUserId(@PathVariable Long userId){
         try {
-            return new ResponseEntity<>(transactionService.findTransactionByUserId(userId), HttpStatus.OK);
+            return new ResponseEntity<>(transactionService.findAllByUserId(userId), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -59,19 +59,20 @@ public class TransactionController {
     public ResponseEntity<Boolean> deposit(@RequestBody Transaction transaction){
        try {
            Double amount = transaction.getAmount();
-           Long toAccountId = transaction.getFromAccountId();
-           return new ResponseEntity<>(transactionService.depositTo(toAccountId, amount), HttpStatus.OK);
+           Long toAccountId = transaction.getToAccountId();
+           String memo = transaction.getMemo();
+           return new ResponseEntity<>(transactionService.depositTo(toAccountId, amount, memo), HttpStatus.OK);
        } catch (Exception e){
            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
        }
     }
 
-    @PostMapping("/transaction/withdraw/{fromAccountId}")
+    @PostMapping("/transaction/withdraw")
     public ResponseEntity<Boolean> withdraw(@RequestBody Transaction transaction){
         try {
-            Double amount = transaction.getAmount();
-            Long fromAccountId = transaction.getFromAccountId();
-            return new ResponseEntity<>(transactionService.withdrawFrom(fromAccountId, amount), HttpStatus.OK);
+            //Double amount = transaction.getAmount();
+            //Long fromAccountId = transaction.getFromAccountId();
+            return new ResponseEntity<>(transactionService.withdrawFrom(transaction), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
@@ -80,11 +81,10 @@ public class TransactionController {
     @PostMapping("/transaction/transfer")
     public ResponseEntity<Boolean> transfer(@RequestBody Transaction transaction){
        try {
-//           Long fromAccountId = transaction.getFromAccountId();
+           Long fromAccountId = transaction.getFromAccountId();
            Long toAccountId = transaction.getToAccountId();
            Double amount = transaction.getAmount();
-//           return new ResponseEntity<>(transactionService.transferFunds(fromAccountId, toAccountId, amount), HttpStatus.OK);
-           return null;
+           return new ResponseEntity<>(transactionService.transferFunds(fromAccountId, toAccountId, amount), HttpStatus.OK);
        } catch (Exception e){
            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
        }

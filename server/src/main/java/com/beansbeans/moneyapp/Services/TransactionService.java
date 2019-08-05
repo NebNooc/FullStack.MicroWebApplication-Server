@@ -39,17 +39,20 @@ public class TransactionService {
     public Transaction findTransactionByUserId(Long userId) {
         return transactionRepository.findById(userId).get(); }
 
-    public Boolean depositTo(Long id, Double amount){
+    public Boolean depositTo(Long id, Double amount, String memo){
         Account account = accountRepository.findById(id).get();
         Double initialBalance = account.getBalance();
         account.setBalance(initialBalance + amount);
         accountRepository.save(account);
-        Transaction transaction = new Transaction(0L,id,amount,"this space for rent", LocalDateTime.now(),account.getUserId());
-        transactionRepository.save(transaction);
+        Transaction logTransaction = new Transaction(null, account.getId(), amount, memo,
+                LocalDateTime.now(), account.getUserId());
+        transactionRepository.save(logTransaction);
         return true;
     }
 
-    public Boolean withdrawFrom(Long id, Double amount){
+    public Boolean withdrawFrom(Transaction transaction){
+        Long id = transaction.getFromAccountId();
+        Double amount = transaction.getAmount();
         Account account = accountRepository.findById(id).get();
         Double initialBalance = account.getBalance();
         if((initialBalance - amount) < 0.0){
@@ -57,6 +60,9 @@ public class TransactionService {
         }
         account.setBalance(initialBalance - amount);
         accountRepository.save(account);
+        Transaction logTransaction = new Transaction(transaction.getFromAccountId(), null,
+                transaction.getAmount(), transaction.getMemo(), LocalDateTime.now(), transaction.getUserId());
+        transactionRepository.save(logTransaction);
         return true;
     }
 
@@ -73,5 +79,9 @@ public class TransactionService {
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
         return true;
+    }
+
+    public Iterable<Transaction> findAllByUserId(Long userId){
+        return transactionRepository.findAllByUserId(userId);
     }
 }
