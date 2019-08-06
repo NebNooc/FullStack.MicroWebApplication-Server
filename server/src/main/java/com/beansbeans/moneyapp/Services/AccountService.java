@@ -1,7 +1,9 @@
 package com.beansbeans.moneyapp.Services;
 
 import com.beansbeans.moneyapp.Model.Account;
+import com.beansbeans.moneyapp.Model.Transaction;
 import com.beansbeans.moneyapp.Repositories.AccountRepository;
+import com.beansbeans.moneyapp.Repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,12 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    private TransactionRepository transactionRepository;
 
-    public AccountService(AccountRepository accountRepository){
+
+    public AccountService(AccountRepository accountRepository, @Autowired TransactionRepository transactionRepository){
         this.accountRepository = accountRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     public Iterable<Account> getAllAccounts(){
@@ -43,6 +48,26 @@ public class AccountService {
     }
 
     public Boolean deleteAccount(Long id){
+        Iterable<Transaction> fromList = transactionRepository.findAllByFromAccountId(id);
+        for(Transaction transaction: fromList){
+            if(transaction.getToAccountId() != null){
+                transaction.setFromAccountId(null);
+                transactionRepository.save(transaction);
+            }
+            else{
+                transactionRepository.delete(transaction);
+            }
+        }
+        Iterable<Transaction> toList = transactionRepository.findAllByToAccountId(id);
+        for(Transaction transaction: toList){
+            if(transaction.getFromAccountId() != null){
+                transaction.setToAccountId(null);
+                transactionRepository.save(transaction);
+            }
+            else{
+                transactionRepository.delete(transaction);
+            }
+        }
         accountRepository.deleteById(id);
         return true;
     }
