@@ -22,11 +22,11 @@ public class AccountServiceTest {
     @InjectMocks
     private AccountService accountService;
 
-    @Before
-    public void setup(){
-        mockRepository = mock(AccountRepository.class);
-        accountService = new AccountService(mockRepository);
-    }
+//    @Before
+//    public void setup(){
+//        mockRepository = mock(AccountRepository.class);
+//        accountService = new AccountService(mockRepository);
+//    }
 
     @Test
     public void createAccountTest(){
