@@ -1,5 +1,6 @@
 package com.beansbeans.moneyapp.Services;
 
+import com.beansbeans.moneyapp.Exception.NewUserException;
 import com.beansbeans.moneyapp.Model.User;
 import com.beansbeans.moneyapp.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User rawUser) throws SQLException {
+    public User create(User rawUser) throws NewUserException {
         User foundUser = userRepository.findByUserName(rawUser.getUserName());
-        if (foundUser != null) throw new SQLException();
-        if (!ValidateUserNamePassword.isUserNameValid(rawUser.getUserName()))  throw new SQLException();
-        if (!ValidateUserNamePassword.isPasswordValid(rawUser.getPasswordHash()))  throw new SQLException();
-        if (!ValidateUserNamePassword.isEmailValid(rawUser.getEmail()))  throw new SQLException();
+        if (foundUser != null) {
+            throw new NewUserException("user already exists");
+        }
+        if (!ValidateUserNamePassword.isUserNameValid(rawUser.getUserName())){
+            throw new NewUserException("username is invalid");
+        }
+        if (!ValidateUserNamePassword.isPasswordValid(rawUser.getPasswordHash())){
+            throw new NewUserException("password is invalid");
+        }
+        if (!ValidateUserNamePassword.isEmailValid(rawUser.getEmail())){
+            throw new NewUserException("email is invalid");
+        }
         User savedUser = new User(rawUser, ValidateUserNamePassword.makeHash(rawUser.getPasswordHash()));
         return userRepository.save(savedUser);
     }
