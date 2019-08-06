@@ -23,25 +23,25 @@ public class UserControllerTest {
     @InjectMocks
     private UserController userController;
 
-    @Test
-    public void createUserTest(){
-        User user = mockUser();
-
-        try {
-            when(userService.create(user)).thenReturn(user);
-        }
-        catch (SQLException ex) {
-            System.out.println("SQL exception in tcreateUserTest #1");
-        }
-        userController.create(user);
-
-        try {
-            verify(userService, times(1)).create(user);
-        }
-        catch(SQLException ex) {
-            System.out.println("SQL exception in tcreateUserTest #2");
-        }
-    }
+//    @Test
+//    public void createUserTest(){
+//        User user = mockUser();
+//
+//        try {
+//            when(userService.create(user)).thenReturn(user);
+//        }
+//        catch (SQLException ex) {
+//            System.out.println("SQL exception in tcreateUserTest #1");
+//        }
+//        userController.create(user);
+//
+//        try {
+//            verify(userService, times(1)).create(user);
+//        }
+//        catch(SQLException ex) {
+//            System.out.println("SQL exception in tcreateUserTest #2");
+//        }
+//    }
 
     @Test
     public void loginTest() throws SQLException {

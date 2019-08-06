@@ -1,5 +1,6 @@
 package com.beansbeans.moneyapp.Controllers;
 
+import com.beansbeans.moneyapp.Exception.NewUserException;
 import com.beansbeans.moneyapp.Model.User;
 import com.beansbeans.moneyapp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,15 @@ public class UserController {
     public ResponseEntity<User> create(@RequestBody User user){
         try {
             return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }catch (NewUserException e){
+           if(e.getErrorMessage().equals("user already exists")) {
+               return new ResponseEntity<>(null, HttpStatus.I_AM_A_TEAPOT);
+           }
+           else{
+               return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+           }
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
         }
     }
 

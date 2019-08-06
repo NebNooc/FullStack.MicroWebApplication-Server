@@ -17,11 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
         public static Boolean isUserNameValid(String inputName) {
             return ((between8And20Characters(inputName)) &&
-                    (containsUpperCaseAndLowerCase(inputName)) &&
-                    (containsNumeric(inputName)) &&
-                    (containsNonAlphaNumeric(inputName)) &&
-                    (doesNotContainSpecialCharacters(inputName)) &&
-                    (doesNotContainTriple(inputName)) &&
+//                    (containsUpperCaseAndLowerCase(inputName)) &&
+//                    (containsNumeric(inputName)) &&
+//                    (containsNonAlphaNumeric(inputName)) &&
+//                    (doesNotContainSpecialCharacters(inputName)) &&
+//                    (doesNotContainTriple(inputName)) &&
                     (doesNotContainSpace(inputName)));
         }
 
