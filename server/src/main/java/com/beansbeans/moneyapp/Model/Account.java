@@ -11,6 +11,7 @@ public class Account {
     private Double balance;
     @Column(name="userid")
     private Long userId;
+    private String purpose;
 
     public Account() {}
 
@@ -56,5 +57,13 @@ public class Account {
                 ", balance=" + balance +
                 ", userId=" + userId +
                 '}';
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 }
